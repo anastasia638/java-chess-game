@@ -14,6 +14,7 @@
 - [Technologies](#technologies)
 - [Run Locally](#run-locally)
 - [Architecture](#architecture)
+- [Skills Demonstrated](#skills-demonstrated)
 
 ---
 
@@ -91,13 +92,25 @@ java-chess-game/
 git clone https://github.com/anastasia638/java-chess-game.git
 cd java-chess-game
 
-# Open in **IntelliJ IDEA**(or any Java IDE)
+# Open in IntelliJ IDEA (or any Java IDE)
 # Run the application
 Main.java
 ```
 
 ---
+## Architecture
 
+| Component| Responsibility |
+|------------|------|
+| Board| Represents the chessboard and stores game state |
+| Piece | Abstract class defining behavior of all pieces |
+| Game | Controls turns and overall game flow |
+| Move | Validates moves according to chess rules |
+|Serialization | Saves and restores game state |
+
+> **Interaction:**
+
+The Game orchestrates the execution of the game by interacting with the Board to update the state, using Move logic to validate actions, and relying on Piece classes to define movement rules.
 
 ## Skills Demonstrated
 
