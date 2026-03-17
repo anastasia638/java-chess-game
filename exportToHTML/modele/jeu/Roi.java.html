@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>Roi.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Roi.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">modele</span><span class="s2">.</span><span class="s1">jeu</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">modele</span><span class="s2">.</span><span class="s1">plateau</span><span class="s2">.</span><span class="s1">Plateau</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">modele</span><span class="s2">.</span><span class="s1">plateau</span><span class="s2">.</span><span class="s1">DecorateurCasesEnLigne</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">modele</span><span class="s2">.</span><span class="s1">plateau</span><span class="s2">.</span><span class="s1">DecorateurCasesDiagonales</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">Roi </span><span class="s0">extends </span><span class="s1">Piece </span><span class="s2">{</span>
+
+    <span class="s0">private </span><span class="s1">String couleur</span><span class="s2">;  </span><span class="s3">// this field for color</span>
+
+    <span class="s0">public </span><span class="s1">Roi</span><span class="s2">(</span><span class="s1">Plateau _plateau</span><span class="s2">, </span><span class="s1">String couleur</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">(</span><span class="s1">_plateau</span><span class="s2">);</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">couleur </span><span class="s2">= </span><span class="s1">couleur</span><span class="s2">;  </span><span class="s3">// Sets the color of the king</span>
+        <span class="s3">// King moves in all directions (horizontally, vertically, and diagonally) but only one square</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">decorateurCasesAccessibles </span><span class="s2">= </span><span class="s0">new </span><span class="s1">DecorateurCasesEnLigne</span><span class="s2">(</span><span class="s0">new </span><span class="s1">DecorateurCasesDiagonales</span><span class="s2">(</span><span class="s0">null</span><span class="s2">)) {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">modele</span><span class="s2">.</span><span class="s1">plateau</span><span class="s2">.</span><span class="s1">Case</span><span class="s2">&gt; </span><span class="s1">getMesCasesPossibles</span><span class="s2">(</span><span class="s1">Piece piece</span><span class="s2">, </span><span class="s1">Plateau plateau</span><span class="s2">) {</span>
+                <span class="s3">// Override to limit the king's movement to one square in any direction</span>
+                <span class="s1">List</span><span class="s2">&lt;</span><span class="s1">modele</span><span class="s2">.</span><span class="s1">plateau</span><span class="s2">.</span><span class="s1">Case</span><span class="s2">&gt; </span><span class="s1">accessibleCases </span><span class="s2">= </span><span class="s0">super</span><span class="s2">.</span><span class="s1">getMesCasesPossibles</span><span class="s2">(</span><span class="s1">piece</span><span class="s2">, </span><span class="s1">plateau</span><span class="s2">);</span>
+                <span class="s3">// Only allow the king to move one square, so no need to change the logic further</span>
+                <span class="s0">return </span><span class="s1">accessibleCases</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">};</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public </span><span class="s1">String getCouleur</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">couleur</span><span class="s2">;  </span><span class="s3">// Returns the color of the king</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">modele</span><span class="s2">.</span><span class="s1">plateau</span><span class="s2">.</span><span class="s1">Case</span><span class="s2">&gt; </span><span class="s1">getDeplacementsPossibles</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">decorateurCasesAccessibles</span><span class="s2">.</span><span class="s1">getMesCasesPossibles</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">plateau</span><span class="s2">);  </span><span class="s3">// Get possible moves (one square in all directions)</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public </span><span class="s1">String getNomImage</span><span class="s2">() {</span>
+        <span class="s3">// Returns the image file name based on the color</span>
+        <span class="s0">return </span><span class="s2">(</span><span class="s1">couleur</span><span class="s2">.</span><span class="s1">equals</span><span class="s2">(</span><span class="s4">&quot;blanc&quot;</span><span class="s2">) ? </span><span class="s4">&quot;w&quot; </span><span class="s2">: </span><span class="s4">&quot;b&quot;</span><span class="s2">) + </span><span class="s4">&quot;K&quot;</span><span class="s2">;  </span><span class="s3">// &quot;wK&quot; for white king, &quot;bK&quot; for black king</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>
