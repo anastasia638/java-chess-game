@@ -1,4 +1,4 @@
-# ♟️ Java Chess Game
+# ♟️  Chess Game
 
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
 ![OOP](https://img.shields.io/badge/OOP-Design-1572B6?style=flat-square)
@@ -20,7 +20,7 @@
 
 ## Overview
 
-The **Java Chess Game** is a Java application that simulates a full chess game through a structured backend system.
+The **Chess Game** is a Java application that simulates a full chess game through a structured backend system.
 
 Users can play a complete match where all moves are validated according to chess rules, with full game state management and persistence.
 
